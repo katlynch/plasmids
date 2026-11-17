@@ -1,0 +1,26 @@
+# asymmetry.ode
+# Asymmetry ODE system
+# Variables: N, F, Ft
+# Lambda1 and Lambda2 inlined into ODEs
+
+# ODEs
+dN/dt=-2*rho*F
+dF/dt=-beta*(F*Ft+((Ft+F)/2*((Ntot+N-F-Ft)/2)^gamma)-((Ft-F)/2*((Ntot-N+F-Ft)/2)^gamma))+kappa*(N-F)-2*rho*F
+dFt/dt=-beta*(F^2/2+Ft^2/2+((Ft+F)/2*((Ntot+N-F-Ft)/2)^gamma)+((Ft-F)/2*((Ntot-N+F-Ft)/2)^gamma))+kappa*(Ntot-Ft)
+
+# Parameters 
+par gamma=0.2, Ntot=50, beta=0.015,kappa=0.08,rho=0.13
+
+# Initial conditions
+init N=50,F=0,Ft=0
+
+# Numerics / main window
+@ total=500,dt=0.1
+@ xlo=0,xhi=500,ylo=0,yhi=50
+
+# AUTO window settings
+@ autoxmin=-0.5,autoxmax=3,autoymin=-60,autoymax=60
+@ parmin=0,parmax=3
+@ nmax=500,ds=0.01,dsmin=0.005,dsmax=0.1
+
+done
