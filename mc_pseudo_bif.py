@@ -24,7 +24,7 @@ def mf_rhs(t, y, N, beta, kappa, gamma, rho):
     dc[1, 1] += rho * (c[0, 1] - c[1, 1])
     return dc.ravel()
 
-def run(gamma, ic_pole, N=25, beta=0.015, kappa=0.08, rho=0.13, T=10000):
+def run(gamma, ic_pole, N=40, beta=0.015, kappa=0.08, rho=0.13, T=1000000):
     c0 = np.zeros((2, N + 2)); c0[ic_pole, N] = 1.0
     sol = solve_ivp(mf_rhs, (0, T), c0.ravel(), method="LSODA",
                     args=(N, beta, kappa, gamma, rho), rtol=1e-9, atol=1e-11)

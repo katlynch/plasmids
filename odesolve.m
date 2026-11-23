@@ -11,7 +11,7 @@
 sv=0; % set =1 to save png of all graphs
 svpath='/Users/katie/Desktop/plasmids/figs/';
 
-params.Ntot=50;
+params.Ntot=200;
 
 % parameter values
 params.beta=0.015;
@@ -19,8 +19,8 @@ params.kappa=0.08;
 params.rho=0.13;
 
 %params.gamma=1;
-gvals=[ 0 2/3 1 2];
-tend=250;
+gvals=1;%[ 0 2/3 1 2];
+tend=5000;
 titles = {'$$F_1$$','$$B_1$$','$$F_2$$','$$B_2$$'};
 titles2= {'$\gamma=0$','$\gamma=2/3$','$\gamma=1$','$\gamma=2$'};
 
@@ -31,6 +31,9 @@ for fg = 1:length(gvals)+1
     set(gca,'TickLabelInterpreter','latex','fontsize',16)
     box on
 end
+
+z0=zeros(params.Ntot*2,1);
+z0(params.Ntot)=1;
 
 
 tgrid = linspace(0, tend, 5000);
@@ -44,13 +47,15 @@ for i=1:length(gvals)
 
     x0 = [F0; B0; 0; 0];
     y0 = [F0+B0,F0,F0];
-
+    
+    % first solves the meanfield ODEs/ i.e., looks at free and bound
     odemean = @(t,x) meanfieldode(t,x,params);
     [tode, xode] = ode45(odemean, tgrid, x0);
 
     figure(5)
     set(gca,'TickLabelInterpreter','latex','fontsize',16)
-
+    % generates a single plot containing f1, f2, b1, b2 
+    % all gammas compared
     for k=1:4
         subplot(2,2,k)
         box on
@@ -62,11 +67,12 @@ for i=1:length(gvals)
         xlim([0,tend])
         title(titles{k},'Interpreter','latex','fontsize',16);
     end
-    
-    
-    odeasym = @(t,y) asymmetryode(t,y,params);
-    [tode, yode] = ode15s(odeasym, tgrid, y0);
 
+    % solves asymmetry odes
+    odeasym = @(t,y) asymmetryode(t,y,params);
+    [tode, yode] = ode45(odeasym, tgrid, y0);
+    
+    % plot asymmetry ode solutions (each gamma on separate plot)
     figure(i)
     hold on
     plot(tode,  yode(:,1),'Color',clr{i},'LineWidth', 2);
@@ -78,6 +84,35 @@ for i=1:length(gvals)
     legend('$\Delta N$','$\Delta F','$F_{tot}$','Interpreter','latex','fontsize',16,'location','best')
     title(titles2{i},'Interpreter','latex','fontsize',20);
 
+
+    % solves multi cluster ODEs
+    odemc = @(t,y) multicluster(t,y,params);
+    [tode, zode] = ode45(odemc, tgrid, z0);
+
+    sizes = 1:params.Ntot;
+    c1 = zode(:, 1:params.Ntot);        % population 1, all sizes, all times
+    c2 = zode(:, params.Ntot+1:2*params.Ntot);    % population 2, all sizes, all times
+    mass1 = c1 * sizes';       % (nt x N) * (N x 1)
+    mass2 = c2 * sizes';
+    multi_dN = mass1-mass2;
+
+    figure(10)
+    clf
+    hold on
+    plot(tode,mass1,'linewidth',2)
+    plot(tode,mass2,'linewidth',2)
+   
+     
+    figure(i+length(gvals))
+    clf
+    hold on
+    plot(tode,  yode(:,1),'--','Color',clr{i},'LineWidth', 2);
+    plot(tode,  multi_dN,'Color',clr{i},'LineWidth', 2);
+    xlabel('time (min)','Interpreter','latex','fontsize',20)
+    ylabel('$\Delta N$ [plasmid copy no.]','Interpreter','latex','fontsize',20)
+    legend('net cluster size','multicluster','Interpreter','latex','fontsize',16,'location','best')
+    ylim([0,params.Ntot])
+    %yscale('log')
 end
 
 if sv==1

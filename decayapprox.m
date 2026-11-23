@@ -1,6 +1,6 @@
 % gamma = 0 approximation graphs
 
-svpath='/Users/katie/Desktop/plasmids/figs/';
+svpath='/Users/katie/Desktop/';
 
 
 clr={'[0.9 0 0]';'[0.1 0.1 0.9]';'[0.2 0.6 0.2]'};
@@ -22,7 +22,7 @@ tgrid = linspace(0, tend, 1000);
 % initial conditions 
 
 p.gamma=0;
-[F0,B0]=onecompartment_ssa(p);
+[F0,B0]=sc_1pole_ssa(p);
 x0=[F0+B0,F0,F0];
 
 ode1 = @(t,x) asymmetryode(t,x,p);
@@ -47,7 +47,7 @@ plot(t_exact_g0,x_exact_g0(:,1),'Color',clr{1},'linewidth',2)
 plot(tgrid,etest,'--','Color','k','linewidth',2)
 
 t_g0 = 1/R0;
-fprintf('for gamma=1, tau = %f \n',t_g0)
+fprintf('for gamma=0, tau = %f \n',t_g0)
 
 plot([t_g0 t_g0], [0 13], '-','color','[0.7 0.7 0.7]', 'linewidth', 1.5)
 plot([0 t_g0], [13 13], '--','color','[0.7 0.7 0.7]','linewidth', 1.5)
@@ -72,12 +72,12 @@ ylabel('$\Delta N$','interpreter','latex','fontsize',16)
 % saveas(gcf,append(svpath,'approx_comp_g0'),'fig')
 saveas(gcf,append(svpath,'approx_comp_g0'),'png')
 
-return
+
 
 %% gamma = 1
 
 p.gamma=1;
-[F0,B0]=onecompartment_ssa(p);
+[F0,B0]=sc_1pole_ssa(p);
 x0=[F0+B0,F0,F0];
 
 
@@ -100,8 +100,8 @@ plot(t_exact_g1,x_exact_g1(:,1),'Color',clr{3},'linewidth',2)
 plot(tgrid,etest1,'--','Color','k','linewidth',2)
 
 t_g1 = log(2)/R1;
-plot([t_g1 t_g1], [0 p.Ntot/2], '-', 'color','[0.7 0.7 0.7]', 'linewidth', 1.5)
-plot([0 t_g1], [p.Ntot/2 p.Ntot/2], '--','color','[0.7 0.7 0.7]', 'linewidth', 1.5)
+plot([t_g1 t_g1], [0 16.5], '-', 'color','[0.7 0.7 0.7]', 'linewidth', 1.5)
+plot([0 t_g1], [16.5 16.5], '--','color','[0.7 0.7 0.7]', 'linewidth', 1.5)
 text(98,5,'$t_{1/2}$','interpreter','latex','fontsize',16)
 
 plot([50,50], [0 25.6], '-','color','[0.7 0.7 0.7]', 'linewidth', 1.5)

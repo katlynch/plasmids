@@ -1,0 +1,208 @@
+# homotopy.ode  (auto-generated, N=40)
+# State: DeltaF=f1-f2, bvar1, bvar2, c1j, c2j (j=2..N)
+
+# Conservation and monomer reconstruction
+csum1=2*c12+3*c13+4*c14+5*c15+6*c16+7*c17+8*c18+9*c19+10*c110+11*c111+12*c112+13*c113+14*c114+15*c115+16*c116+17*c117+18*c118+19*c119+20*c120+21*c121+22*c122+23*c123+24*c124+25*c125+26*c126+27*c127+28*c128+29*c129+30*c130+31*c131+32*c132+33*c133+34*c134+35*c135+36*c136+37*c137+38*c138+39*c139+40*c140
+
+csum2=2*c22+3*c23+4*c24+5*c25+6*c26+7*c27+8*c28+9*c29+10*c210+11*c211+12*c212+13*c213+14*c214+15*c215+16*c216+17*c217+18*c218+19*c219+20*c220+21*c221+22*c222+23*c223+24*c224+25*c225+26*c226+27*c227+28*c228+29*c229+30*c230+31*c231+32*c232+33*c233+34*c234+35*c235+36*c236+37*c237+38*c238+39*c239+40*c240
+
+SumF=Ntot-bvar1-bvar2-csum1-csum2
+f1=(SumF+DeltaF)/2
+f2=(SumF-DeltaF)/2
+
+
+# Partial sums for DeltaF equation
+pg1=2^gamma*c12+3^gamma*c13+4^gamma*c14+5^gamma*c15+6^gamma*c16+7^gamma*c17+8^gamma*c18+9^gamma*c19+10^gamma*c110+11^gamma*c111+12^gamma*c112+13^gamma*c113+14^gamma*c114+15^gamma*c115+16^gamma*c116+17^gamma*c117+18^gamma*c118+19^gamma*c119+20^gamma*c120+21^gamma*c121+22^gamma*c122+23^gamma*c123+24^gamma*c124+25^gamma*c125+26^gamma*c126+27^gamma*c127+28^gamma*c128+29^gamma*c129+30^gamma*c130+31^gamma*c131+32^gamma*c132+33^gamma*c133+34^gamma*c134+35^gamma*c135+36^gamma*c136+37^gamma*c137+38^gamma*c138+39^gamma*c139
+pk1=3*c13+4*c14+5*c15+6*c16+7*c17+8*c18+9*c19+10*c110+11*c111+12*c112+13*c113+14*c114+15*c115+16*c116+17*c117+18*c118+19*c119+20*c120+21*c121+22*c122+23*c123+24*c124+25*c125+26*c126+27*c127+28*c128+29*c129+30*c130+31*c131+32*c132+33*c133+34*c134+35*c135+36*c136+37*c137+38*c138+39*c139+40*c140
+pg2=2^gamma*c22+3^gamma*c23+4^gamma*c24+5^gamma*c25+6^gamma*c26+7^gamma*c27+8^gamma*c28+9^gamma*c29+10^gamma*c210+11^gamma*c211+12^gamma*c212+13^gamma*c213+14^gamma*c214+15^gamma*c215+16^gamma*c216+17^gamma*c217+18^gamma*c218+19^gamma*c219+20^gamma*c220+21^gamma*c221+22^gamma*c222+23^gamma*c223+24^gamma*c224+25^gamma*c225+26^gamma*c226+27^gamma*c227+28^gamma*c228+29^gamma*c229+30^gamma*c230+31^gamma*c231+32^gamma*c232+33^gamma*c233+34^gamma*c234+35^gamma*c235+36^gamma*c236+37^gamma*c237+38^gamma*c238+39^gamma*c239
+pk2=3*c23+4*c24+5*c25+6*c26+7*c27+8*c28+9*c29+10*c210+11*c211+12*c212+13*c213+14*c214+15*c215+16*c216+17*c217+18*c218+19*c219+20*c220+21*c221+22*c222+23*c223+24*c224+25*c225+26*c226+27*c227+28*c228+29*c229+30*c230+31*c231+32*c232+33*c233+34*c234+35*c235+36*c236+37*c237+38*c238+39*c239+40*c240
+
+# Bulk variables from asymmetry model (freeze at theta=1)
+dbvar1/dt=(1-theta)*(beta*f1*(f1+bvar1^gamma)-kappa*bvar1)
+dbvar2/dt=(1-theta)*(beta*f2*(f2+bvar2^gamma)-kappa*bvar2)
+
+# Cluster distribution equations (theta-scaled)
+dc12/dt=theta*((0.5*beta*f1^2-2*kappa*c12)-(beta*2^gamma*f1*c12-kappa*3*c13))
+dc13/dt=theta*((beta*2^gamma*f1*c12-kappa*3*c13)-(beta*3^gamma*f1*c13-kappa*4*c14))
+dc14/dt=theta*((beta*3^gamma*f1*c13-kappa*4*c14)-(beta*4^gamma*f1*c14-kappa*5*c15))
+dc15/dt=theta*((beta*4^gamma*f1*c14-kappa*5*c15)-(beta*5^gamma*f1*c15-kappa*6*c16))
+dc16/dt=theta*((beta*5^gamma*f1*c15-kappa*6*c16)-(beta*6^gamma*f1*c16-kappa*7*c17))
+dc17/dt=theta*((beta*6^gamma*f1*c16-kappa*7*c17)-(beta*7^gamma*f1*c17-kappa*8*c18))
+dc18/dt=theta*((beta*7^gamma*f1*c17-kappa*8*c18)-(beta*8^gamma*f1*c18-kappa*9*c19))
+dc19/dt=theta*((beta*8^gamma*f1*c18-kappa*9*c19)-(beta*9^gamma*f1*c19-kappa*10*c110))
+dc110/dt=theta*((beta*9^gamma*f1*c19-kappa*10*c110)-(beta*10^gamma*f1*c110-kappa*11*c111))
+dc111/dt=theta*((beta*10^gamma*f1*c110-kappa*11*c111)-(beta*11^gamma*f1*c111-kappa*12*c112))
+dc112/dt=theta*((beta*11^gamma*f1*c111-kappa*12*c112)-(beta*12^gamma*f1*c112-kappa*13*c113))
+dc113/dt=theta*((beta*12^gamma*f1*c112-kappa*13*c113)-(beta*13^gamma*f1*c113-kappa*14*c114))
+dc114/dt=theta*((beta*13^gamma*f1*c113-kappa*14*c114)-(beta*14^gamma*f1*c114-kappa*15*c115))
+dc115/dt=theta*((beta*14^gamma*f1*c114-kappa*15*c115)-(beta*15^gamma*f1*c115-kappa*16*c116))
+dc116/dt=theta*((beta*15^gamma*f1*c115-kappa*16*c116)-(beta*16^gamma*f1*c116-kappa*17*c117))
+dc117/dt=theta*((beta*16^gamma*f1*c116-kappa*17*c117)-(beta*17^gamma*f1*c117-kappa*18*c118))
+dc118/dt=theta*((beta*17^gamma*f1*c117-kappa*18*c118)-(beta*18^gamma*f1*c118-kappa*19*c119))
+dc119/dt=theta*((beta*18^gamma*f1*c118-kappa*19*c119)-(beta*19^gamma*f1*c119-kappa*20*c120))
+dc120/dt=theta*((beta*19^gamma*f1*c119-kappa*20*c120)-(beta*20^gamma*f1*c120-kappa*21*c121))
+dc121/dt=theta*((beta*20^gamma*f1*c120-kappa*21*c121)-(beta*21^gamma*f1*c121-kappa*22*c122))
+dc122/dt=theta*((beta*21^gamma*f1*c121-kappa*22*c122)-(beta*22^gamma*f1*c122-kappa*23*c123))
+dc123/dt=theta*((beta*22^gamma*f1*c122-kappa*23*c123)-(beta*23^gamma*f1*c123-kappa*24*c124))
+dc124/dt=theta*((beta*23^gamma*f1*c123-kappa*24*c124)-(beta*24^gamma*f1*c124-kappa*25*c125))
+dc125/dt=theta*((beta*24^gamma*f1*c124-kappa*25*c125)-(beta*25^gamma*f1*c125-kappa*26*c126))
+dc126/dt=theta*((beta*25^gamma*f1*c125-kappa*26*c126)-(beta*26^gamma*f1*c126-kappa*27*c127))
+dc127/dt=theta*((beta*26^gamma*f1*c126-kappa*27*c127)-(beta*27^gamma*f1*c127-kappa*28*c128))
+dc128/dt=theta*((beta*27^gamma*f1*c127-kappa*28*c128)-(beta*28^gamma*f1*c128-kappa*29*c129))
+dc129/dt=theta*((beta*28^gamma*f1*c128-kappa*29*c129)-(beta*29^gamma*f1*c129-kappa*30*c130))
+dc130/dt=theta*((beta*29^gamma*f1*c129-kappa*30*c130)-(beta*30^gamma*f1*c130-kappa*31*c131))
+dc131/dt=theta*((beta*30^gamma*f1*c130-kappa*31*c131)-(beta*31^gamma*f1*c131-kappa*32*c132))
+dc132/dt=theta*((beta*31^gamma*f1*c131-kappa*32*c132)-(beta*32^gamma*f1*c132-kappa*33*c133))
+dc133/dt=theta*((beta*32^gamma*f1*c132-kappa*33*c133)-(beta*33^gamma*f1*c133-kappa*34*c134))
+dc134/dt=theta*((beta*33^gamma*f1*c133-kappa*34*c134)-(beta*34^gamma*f1*c134-kappa*35*c135))
+dc135/dt=theta*((beta*34^gamma*f1*c134-kappa*35*c135)-(beta*35^gamma*f1*c135-kappa*36*c136))
+dc136/dt=theta*((beta*35^gamma*f1*c135-kappa*36*c136)-(beta*36^gamma*f1*c136-kappa*37*c137))
+dc137/dt=theta*((beta*36^gamma*f1*c136-kappa*37*c137)-(beta*37^gamma*f1*c137-kappa*38*c138))
+dc138/dt=theta*((beta*37^gamma*f1*c137-kappa*38*c138)-(beta*38^gamma*f1*c138-kappa*39*c139))
+dc139/dt=theta*((beta*38^gamma*f1*c138-kappa*39*c139)-(beta*39^gamma*f1*c139-kappa*40*c140))
+dc140/dt=theta*(beta*39^gamma*f1*c139-kappa*40*c140)
+
+dc22/dt=theta*((0.5*beta*f2^2-2*kappa*c22)-(beta*2^gamma*f2*c22-kappa*3*c23))
+dc23/dt=theta*((beta*2^gamma*f2*c22-kappa*3*c23)-(beta*3^gamma*f2*c23-kappa*4*c24))
+dc24/dt=theta*((beta*3^gamma*f2*c23-kappa*4*c24)-(beta*4^gamma*f2*c24-kappa*5*c25))
+dc25/dt=theta*((beta*4^gamma*f2*c24-kappa*5*c25)-(beta*5^gamma*f2*c25-kappa*6*c26))
+dc26/dt=theta*((beta*5^gamma*f2*c25-kappa*6*c26)-(beta*6^gamma*f2*c26-kappa*7*c27))
+dc27/dt=theta*((beta*6^gamma*f2*c26-kappa*7*c27)-(beta*7^gamma*f2*c27-kappa*8*c28))
+dc28/dt=theta*((beta*7^gamma*f2*c27-kappa*8*c28)-(beta*8^gamma*f2*c28-kappa*9*c29))
+dc29/dt=theta*((beta*8^gamma*f2*c28-kappa*9*c29)-(beta*9^gamma*f2*c29-kappa*10*c210))
+dc210/dt=theta*((beta*9^gamma*f2*c29-kappa*10*c210)-(beta*10^gamma*f2*c210-kappa*11*c211))
+dc211/dt=theta*((beta*10^gamma*f2*c210-kappa*11*c211)-(beta*11^gamma*f2*c211-kappa*12*c212))
+dc212/dt=theta*((beta*11^gamma*f2*c211-kappa*12*c212)-(beta*12^gamma*f2*c212-kappa*13*c213))
+dc213/dt=theta*((beta*12^gamma*f2*c212-kappa*13*c213)-(beta*13^gamma*f2*c213-kappa*14*c214))
+dc214/dt=theta*((beta*13^gamma*f2*c213-kappa*14*c214)-(beta*14^gamma*f2*c214-kappa*15*c215))
+dc215/dt=theta*((beta*14^gamma*f2*c214-kappa*15*c215)-(beta*15^gamma*f2*c215-kappa*16*c216))
+dc216/dt=theta*((beta*15^gamma*f2*c215-kappa*16*c216)-(beta*16^gamma*f2*c216-kappa*17*c217))
+dc217/dt=theta*((beta*16^gamma*f2*c216-kappa*17*c217)-(beta*17^gamma*f2*c217-kappa*18*c218))
+dc218/dt=theta*((beta*17^gamma*f2*c217-kappa*18*c218)-(beta*18^gamma*f2*c218-kappa*19*c219))
+dc219/dt=theta*((beta*18^gamma*f2*c218-kappa*19*c219)-(beta*19^gamma*f2*c219-kappa*20*c220))
+dc220/dt=theta*((beta*19^gamma*f2*c219-kappa*20*c220)-(beta*20^gamma*f2*c220-kappa*21*c221))
+dc221/dt=theta*((beta*20^gamma*f2*c220-kappa*21*c221)-(beta*21^gamma*f2*c221-kappa*22*c222))
+dc222/dt=theta*((beta*21^gamma*f2*c221-kappa*22*c222)-(beta*22^gamma*f2*c222-kappa*23*c223))
+dc223/dt=theta*((beta*22^gamma*f2*c222-kappa*23*c223)-(beta*23^gamma*f2*c223-kappa*24*c224))
+dc224/dt=theta*((beta*23^gamma*f2*c223-kappa*24*c224)-(beta*24^gamma*f2*c224-kappa*25*c225))
+dc225/dt=theta*((beta*24^gamma*f2*c224-kappa*25*c225)-(beta*25^gamma*f2*c225-kappa*26*c226))
+dc226/dt=theta*((beta*25^gamma*f2*c225-kappa*26*c226)-(beta*26^gamma*f2*c226-kappa*27*c227))
+dc227/dt=theta*((beta*26^gamma*f2*c226-kappa*27*c227)-(beta*27^gamma*f2*c227-kappa*28*c228))
+dc228/dt=theta*((beta*27^gamma*f2*c227-kappa*28*c228)-(beta*28^gamma*f2*c228-kappa*29*c229))
+dc229/dt=theta*((beta*28^gamma*f2*c228-kappa*29*c229)-(beta*29^gamma*f2*c229-kappa*30*c230))
+dc230/dt=theta*((beta*29^gamma*f2*c229-kappa*30*c230)-(beta*30^gamma*f2*c230-kappa*31*c231))
+dc231/dt=theta*((beta*30^gamma*f2*c230-kappa*31*c231)-(beta*31^gamma*f2*c231-kappa*32*c232))
+dc232/dt=theta*((beta*31^gamma*f2*c231-kappa*32*c232)-(beta*32^gamma*f2*c232-kappa*33*c233))
+dc233/dt=theta*((beta*32^gamma*f2*c232-kappa*33*c233)-(beta*33^gamma*f2*c233-kappa*34*c234))
+dc234/dt=theta*((beta*33^gamma*f2*c233-kappa*34*c234)-(beta*34^gamma*f2*c234-kappa*35*c235))
+dc235/dt=theta*((beta*34^gamma*f2*c234-kappa*35*c235)-(beta*35^gamma*f2*c235-kappa*36*c236))
+dc236/dt=theta*((beta*35^gamma*f2*c235-kappa*36*c236)-(beta*36^gamma*f2*c236-kappa*37*c237))
+dc237/dt=theta*((beta*36^gamma*f2*c236-kappa*37*c237)-(beta*37^gamma*f2*c237-kappa*38*c238))
+dc238/dt=theta*((beta*37^gamma*f2*c237-kappa*38*c238)-(beta*38^gamma*f2*c238-kappa*39*c239))
+dc239/dt=theta*((beta*38^gamma*f2*c238-kappa*39*c239)-(beta*39^gamma*f2*c239-kappa*40*c240))
+dc240/dt=theta*(beta*39^gamma*f2*c239-kappa*40*c240)
+
+# DeltaF = f1-f2 equation (d(DeltaF)/dt = df1/dt - df2/dt)
+dDeltaF/dt=-((1-theta)*(beta*f1*(f1+bvar1^gamma)-kappa*bvar1)-(1-theta)*(beta*f2*(f2+bvar2^gamma)-kappa*bvar2))-theta*(beta*f1^2-4*kappa*c12+beta*f1*pg1-kappa*pk1-beta*f2^2+4*kappa*c22-beta*f2*pg2+kappa*pk2)-2*rho*DeltaF
+
+# Auxiliary outputs
+aux f1=f1
+aux f2=f2
+aux bvar1=bvar1
+aux bvar2=bvar2
+aux csum1=csum1
+aux csum2=csum2
+aux DeltaM=(f1+bvar1+csum1)-(f2+bvar2+csum2)
+
+par gamma=0.2,Ntot=40,beta=0.015,kappa=0.08,rho=0.13,theta=0.1
+
+init DeltaF=0
+init bvar1=0,bvar2=0
+init c12=0
+init c13=0
+init c14=0
+init c15=0
+init c16=0
+init c17=0
+init c18=0
+init c19=0
+init c110=0
+init c111=0
+init c112=0
+init c113=0
+init c114=0
+init c115=0
+init c116=0
+init c117=0
+init c118=0
+init c119=0
+init c120=0
+init c121=0
+init c122=0
+init c123=0
+init c124=0
+init c125=0
+init c126=0
+init c127=0
+init c128=0
+init c129=0
+init c130=0
+init c131=0
+init c132=0
+init c133=0
+init c134=0
+init c135=0
+init c136=0
+init c137=0
+init c138=0
+init c139=0
+init c140=0
+init c22=0
+init c23=0
+init c24=0
+init c25=0
+init c26=0
+init c27=0
+init c28=0
+init c29=0
+init c210=0
+init c211=0
+init c212=0
+init c213=0
+init c214=0
+init c215=0
+init c216=0
+init c217=0
+init c218=0
+init c219=0
+init c220=0
+init c221=0
+init c222=0
+init c223=0
+init c224=0
+init c225=0
+init c226=0
+init c227=0
+init c228=0
+init c229=0
+init c230=0
+init c231=0
+init c232=0
+init c233=0
+init c234=0
+init c235=0
+init c236=0
+init c237=0
+init c238=0
+init c239=0
+init c240=0
+
+@ total=500,dt=0.1,meth=cvode
+@ xplot=t,yplot=DeltaF,xlo=0,xhi=500,ylo=-40,yhi=40
+@ autoxmin=0,autoxmax=3,autoymin=-40,autoymax=40
+@ autovar=DeltaF,parmin=0,parmax=3
+@ nmax=500,ds=0.005,dsmin=0.0001,dsmax=0.05
+@ epsl=1e-6,epsu=1e-6,epss=1e-4
+@ ntst=40,ncol=4
+
+done
